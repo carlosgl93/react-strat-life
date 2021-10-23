@@ -1,18 +1,20 @@
 import { Switch, Route } from "react-router-dom";
 
-import Homepage from './components/homepage'
-import Nav from './components/nav'
+import Homepage from "./components/Homepage";
+import Navbar from "./components/Nav";
 
 function App() {
-  return <div>
-    <Nav>
-      <Switch>
-        <Route exact path='/'>
-          <Homepage>
-        </Route>
-      </Switch>
-    </Nav>
-  </div>;
+  return (
+    <div>
+      <Navbar>
+        <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+        </Switch>
+      </Navbar>
+    </div>
+  );
 }
 
 export default App;
