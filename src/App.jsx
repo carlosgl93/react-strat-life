@@ -1,19 +1,34 @@
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Homepage from "./components/Homepage";
-import Navbar from "./components/Nav";
+import Homepage from "./pages/homepage/Homepage";
+import Quests from "./pages/Quests";
+import Lore from "./pages/Lore";
+import Navbar from "./components/nav/Nav";
+import Attributes from "./pages/Attributes";
+import SkillTree from "./pages/SkillTree";
 
 function App() {
   return (
-    <div>
-      <Navbar>
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-        </Switch>
-      </Navbar>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path="/quests">
+          <Quests />
+        </Route>
+        <Route path="/attributes">
+          <Attributes />
+        </Route>
+        <Route path="/skill-tree">
+          <SkillTree />
+        </Route>
+        <Route path="/life-lore">
+          <Lore />
+        </Route>
+        <Route exact={true} path="/">
+          <Homepage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
