@@ -6,6 +6,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import reactDom from "react-dom";
+import QuestItem from "../components/quests/QuestItem";
+import QuestList from "../components/quests/QuestList";
 
 const dummy_quests = [
   {
@@ -125,18 +127,7 @@ const Quests = () => {
         </Card>
       </div>
       <div className="quests">
-        <ul>
-          {dummy_quests.map((quest) => {
-            return (
-              <React.Fragment key={quest.id}>
-                <li key={quest.title}>
-                  {quest.title} priority:{quest.priority}
-                </li>
-                <p>Todo: add rewards</p>
-              </React.Fragment>
-            );
-          })}
-        </ul>
+        <QuestList quests={dummy_quests} />
       </div>
     </Container>
   );
