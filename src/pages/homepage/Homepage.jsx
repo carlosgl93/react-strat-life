@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <div>
       <Container fluid>
-        <Row>
+        <Row lg={3} md={1}>
           <Col md={true}>
             <Quests />
           </Col>
