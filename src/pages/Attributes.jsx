@@ -13,7 +13,11 @@ const Attributes = () => {
         that give us traits . These traits are the attributes that constitute
         ourselves.
       </p>
-      <Image src={attributesImage} rounded style={{ width: "80vw" }} />
+      <Image
+        src={attributesImage}
+        rounded
+        style={{ width: "100%", margin: "auto" }}
+      />
     </Container>
   );
 };
