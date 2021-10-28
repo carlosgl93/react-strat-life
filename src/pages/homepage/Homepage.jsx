@@ -12,15 +12,15 @@ const Homepage = () => {
   return (
     <div>
       <Container fluid>
-        <Row lg={3} md={1}>
-          <Col md={true}>
-            <Quests />
+        <Row>
+          <Col md={12} lg={12}>
+            <Lore />
           </Col>
           <Col md={true}>
             <Attributes />
           </Col>
           <Col md={true}>
-            <Lore />
+            <Quests />
           </Col>
         </Row>
       </Container>
