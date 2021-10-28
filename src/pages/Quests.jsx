@@ -54,10 +54,7 @@ const Quests = () => {
     <Container fluid>
       <div className="top text-center">
         <h2>Quest Tracker</h2>
-        <p className="description">
-          Create quests, add objectives and rewards this will unlock attributes
-          points
-        </p>
+        <p className="description">By doing quests you will earn attributes.</p>
       </div>
       <CreateQuestCard />
       <div className="quests">
