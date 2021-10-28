@@ -27,10 +27,10 @@ const MyNav = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link to="/quests">Quests</Nav.Link>
+            <Nav.Link to="/life-lore">Life Lore</Nav.Link>
             <Nav.Link to="/attributes">Attributes</Nav.Link>
             <Nav.Link to="/skill-tree">Skill Tree</Nav.Link>
-            <Nav.Link to="/life-lore">Life Lore</Nav.Link>
+            <Nav.Link to="/quests">Quests</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
