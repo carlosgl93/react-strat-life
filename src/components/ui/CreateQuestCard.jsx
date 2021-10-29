@@ -1,26 +1,59 @@
-import React, { useState } from "react";
-import reactDom from "react-dom";
+import React, { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Form, FormLabel } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import QuestReward from "../quests/QuestReward";
 
-const CreateQuestCard = () => {
-  const [validated, setValidated] = useState(false);
+const CreateQuestCard = (props) => {
+  const [questTitle, setQuestTitle] = useState("");
+  const [questPriority, setQuestPriority] = useState("");
+  // toggle dropdown to select quest reward state
+  const [addRewardVisible, setAddRewardVisibile] = useState(false);
+  // rewards selected for this quest
+  const [selectedAttributes, setSelectedAttributes] = useState([]);
 
-  const handleSubmit = (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  const handleQuestPriority = (event) => {
+    setQuestPriority(event.target.value);
+    console.log(questPriority);
+  };
 
-    setValidated(true);
+  // function to handle the visibility of rewards dropdown
+  const handleAddRewardVisibility = (event) => {
+    setAddRewardVisibile(!addRewardVisible);
+    console.log(addRewardVisible);
+  };
+
+  const handleRewardSelect = (event) => {
+    if (selectedAttributes.indexOf(event) === -1) {
+      setSelectedAttributes([...selectedAttributes, event]);
+      return;
+    } else console.log(selectedAttributes);
+  };
+
+  // func to remove the selected reward:
+  const handleDeleteReward = (event) => {
+    console.log(event);
+  };
+
+  // form submition function
+  const questTitleRef = useRef();
+  const questPriorityRef = useRef();
+  const questRewardRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const enteredQuestTitle = questTitleRef.current.value;
+    const enteredQuestPriority = questPriority;
+    const enteredQuestRewards = selectedAttributes;
+    const questData = {
+      task: enteredQuestTitle,
+      priority: enteredQuestPriority,
+      rewards: enteredQuestRewards,
+    };
+    props.onNewQuest(questData);
   };
 
   return (
@@ -28,15 +61,16 @@ const CreateQuestCard = () => {
       <Card xs={12} sm={12}>
         <Row sm={12} xs={12}>
           <Col className="text-center">
-            <h3 className="text-center">Create a quest</h3>
+            <h3 className="text-center mt-2">Create a quest</h3>
             <Container fluid id="form-container" className="px-1">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Quest main task</label> <br />
                 <input
                   type="text"
                   required
                   id="title"
                   style={{ width: "85%" }}
+                  ref={questTitleRef}
                 ></input>{" "}
                 <br />
                 <label htmlFor="priority">Quest Priority</label> <br />
@@ -44,135 +78,58 @@ const CreateQuestCard = () => {
                   1 is the most important, 4 is the least important
                 </Form.Text>
                 <br />
-                <input
-                  type="radio"
-                  id="priority1"
-                  value="1"
-                  name="quest_priority"
-                  style={{ margin: "1vh 1vw" }}
-                />
-                <label htmlFor="priority1">1</label>
-                <input
-                  type="radio"
-                  id="priority2"
-                  value="2"
-                  name="quest_priority"
-                  style={{ margin: "1vh 1vw" }}
-                />
-                <label htmlFor="priority2">2</label>
-                <input
-                  type="radio"
-                  id="priority3"
-                  value="3"
-                  name="quest_priority"
-                  style={{ margin: "1vh 1vw" }}
-                />
-                <label htmlFor="priority3">3</label>
-                <input
-                  type="radio"
-                  id="priority4"
-                  value="4"
-                  name="quest_priority"
-                  style={{ margin: "1vh 1vw" }}
-                />
-                <label htmlFor="priority4">4</label>
+                <div
+                  className="quest_priotity_radio"
+                  onChange={handleQuestPriority}
+                >
+                  <input
+                    type="radio"
+                    id="priority1"
+                    value="1"
+                    name="quest_priority"
+                    style={{ margin: "1vh 1vw" }}
+                    ref={questPriorityRef}
+                    required
+                  />
+                  <label htmlFor="priority1">1</label>
+                  <input
+                    type="radio"
+                    id="priority2"
+                    value="2"
+                    name="quest_priority"
+                    style={{ margin: "1vh 1vw" }}
+                  />
+                  <label htmlFor="priority2">2</label>
+                  <input
+                    type="radio"
+                    id="priority3"
+                    value="3"
+                    name="quest_priority"
+                    style={{ margin: "1vh 1vw" }}
+                  />
+                  <label htmlFor="priority3">3</label>
+                  <input
+                    type="radio"
+                    id="priority4"
+                    value="4"
+                    name="quest_priority"
+                    style={{ margin: "1vh 1vw" }}
+                  />
+                  <label htmlFor="priority4">4</label>
+                </div>
                 <Container fluid className="rewards px-0 my-3">
-                  <label className="text-center">Rewards</label> <br />
-                  <Row style={{ width: "100%" }} className="my-1    ">
-                    <Col xs={6} sm={6} className="text-md-left">
-                      <label htmlFor="emotional_reward">Emotional:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Financial:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Social:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Spiritual:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Occupational:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Physical:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Intellectual:</label>
-                      <br />
-                      <label htmlFor="emotional_reward">Environmental:</label>
-                      <br />
-                    </Col>
-                    <Col xs={6} sm={6}>
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                      <input
-                        type="number"
-                        id="emotional_reward"
-                        min="-5"
-                        max="5"
-                        placeholder="-5 to 5"
-                        style={{ height: "22.5px" }}
-                      />
-                      <br />
-                    </Col>
-                  </Row>
-                  <Button type="submit ">Create Quest</Button>
+                  <QuestReward
+                    rewardKey={selectedAttributes.length}
+                    onClick={handleAddRewardVisibility}
+                    addRewardVisible={addRewardVisible}
+                    addRewards={handleRewardSelect}
+                    rewards={selectedAttributes}
+                    deleteReward={handleDeleteReward}
+                    rewardRef={questRewardRef}
+                  />
+                  <Button className="mt-3" type="submit">
+                    Create Quest
+                  </Button>
                 </Container>
               </form>
             </Container>
