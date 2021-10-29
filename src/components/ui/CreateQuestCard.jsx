@@ -52,6 +52,7 @@ const CreateQuestCard = (props) => {
       task: enteredQuestTitle,
       priority: enteredQuestPriority,
       rewards: enteredQuestRewards,
+      done: false,
     };
     props.onNewQuest(questData);
   };
@@ -136,67 +137,6 @@ const CreateQuestCard = (props) => {
           </Col>
         </Row>
       </Card>
-      {/* <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Card>
-          <Card.Header as="h5">
-            <Row lg={2} md={2} sm={2} xs={1}>
-              <Col>
-                <Form.Group controlId="questTitle" className="mb-3">
-                  <Form.Label>Enter the quest title</Form.Label>
-                  <Form.Control
-                    required
-                    type="text"
-                    placeholder="Stretch lower body for 10 mins"
-                    aria-label="qTitle"
-                  />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-              <Col className="text-center">
-                <Form.Group controlId="questPriority">
-                  <Form.Label></Form.Label>
-                  <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                      Priority
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.ItemText>
-                        1 = Do now / 4 = Can wait
-                      </Dropdown.ItemText>
-                      <Dropdown.Item>1</Dropdown.Item>
-                      <Dropdown.Item>2</Dropdown.Item>
-                      <Dropdown.Item>3</Dropdown.Item>
-                      <Dropdown.Item>4</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Form.Group>
-              </Col>
-            </Row>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              Add rewards:
-              <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Pillars affected
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Emotional</Dropdown.Item>
-                  <Dropdown.Item>Financial</Dropdown.Item>
-                  <Dropdown.Item>Social</Dropdown.Item>
-                  <Dropdown.Item>Spiritual</Dropdown.Item>
-                  <Dropdown.Item>Occupational</Dropdown.Item>
-                  <Dropdown.Item>Physical</Dropdown.Item>
-                  <Dropdown.Item>Intellectual</Dropdown.Item>
-                  <Dropdown.Item>Environmental</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <ul></ul>
-            </Card.Text>
-            <Button variant="primary">Create Quest</Button>
-          </Card.Body>
-        </Card>
-      </Form> */}
     </div>
   );
 };
