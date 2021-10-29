@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 const Lore = () => {
   return (
     <Container className="text-center">
+      <hr />
+
       <h2 className="text-center">Life Lore</h2>
       <p>
         This section tries to explain the hidden secrets to a meaningful life.
@@ -42,6 +44,7 @@ const Lore = () => {
       <strong>
         What do I have to do in order for tomorrow to be a meaningful day?
       </strong>
+      <hr />
     </Container>
   );
 };

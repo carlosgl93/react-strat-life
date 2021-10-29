@@ -3,7 +3,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import classes from "./Homepage.module.css";
 import Quests from "../Quests";
 import Attributes from "../Attributes";
 import Lore from "../Lore";
