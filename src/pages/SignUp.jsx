@@ -38,7 +38,7 @@ const SignUp = (props) => {
           const userToken = user.stsTokenManager.accessToken;
           authCtx.login(userToken);
           // history
-          if (authCtx.token !== null) {
+          if (user) {
             history.replace("/");
           } else return;
         })

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -29,9 +29,10 @@ const Login = () => {
         const user = userCredential.user;
         const userToken = user.stsTokenManager.accessToken;
         authCtx.login(userToken);
+        console.log(authCtx);
 
         // history
-        if (authCtx.token !== null) {
+        if (user) {
           history.replace("/");
         } else return;
       })
@@ -42,6 +43,8 @@ const Login = () => {
         alert(`Oops there was an error: ${errorCode}: ${errorMessage}`);
       });
   };
+
+  useEffect(() => {}, [authCtx]);
 
   return (
     <Container>
