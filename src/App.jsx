@@ -9,6 +9,8 @@ import SkillTree from "./pages/SkillTree";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { useFirebaseApp } from "reactfire";
+import ResetPassword from "./pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const firebase = useFirebaseApp();
@@ -37,6 +39,12 @@ function App() {
           </Route>
           <Route path="/skills">
             <SkillTree />
+          </Route>
+          <Route path="/send-reset-password-email">
+            <ForgotPassword />
+          </Route>
+          <Route path="/reset-password">
+            <ResetPassword />
           </Route>
           <Route exact={true} path="/">
             <Homepage />

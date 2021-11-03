@@ -88,6 +88,10 @@ const Login = () => {
         <p className="sign-up-link">Don't have an account yet?</p>
         <Link to="/sign-up">Create one here!</Link>
       </Container>
+      <Container>
+        <p className="reset-password-link">Forgot your password?</p>
+        <Link to="/send-reset-password-email">Reset your password</Link>
+      </Container>
     </Container>
   );
 };
