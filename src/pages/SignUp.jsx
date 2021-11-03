@@ -4,7 +4,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import AuthContext from "../store/auth_context";
 
 const SignUp = (props) => {
@@ -37,6 +41,12 @@ const SignUp = (props) => {
           const user = userCredential.user;
           const userToken = user.stsTokenManager.accessToken;
           authCtx.login(userToken);
+
+          sendEmailVerification(auth.currentUser).then(() => {
+            alert(
+              "Please verify your account: Go to your email and click on the verify link"
+            );
+          });
           // history
           if (user) {
             history.replace("/");
