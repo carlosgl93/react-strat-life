@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import Homepage from "./pages/homepage/Homepage";
@@ -6,30 +6,42 @@ import Quests from "./pages/Quests";
 import Lore from "./pages/Lore";
 import Attributes from "./pages/Attributes";
 import SkillTree from "./pages/SkillTree";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import { useFirebaseApp } from "reactfire";
 
 function App() {
+  const firebase = useFirebaseApp();
+
   return (
-    <Router>
-      <Layout>
-        <Switch>
-          <Route path="/quests">
-            <Quests />
-          </Route>
-          <Route path="/attributes">
-            <Attributes />
-          </Route>
-          <Route path="/skill-tree">
-            <SkillTree />
-          </Route>
-          <Route path="/life-lore">
-            <Lore />
-          </Route>
-          <Route exact={true} path="/">
-            <Homepage />
-          </Route>
-        </Switch>
-      </Layout>
-    </Router>
+    <Layout>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/sign-up">
+          <SignUp firebaseApp={firebase} />
+        </Route>
+        <Route path="/quests">
+          <Quests />
+        </Route>
+        <Route path="/attributes">
+          <Attributes />
+        </Route>
+        <Route path="/skill-tree">
+          <SkillTree />
+        </Route>
+        <Route path="/life-lore">
+          <Lore />
+        </Route>
+        <Route path="/skills">
+          <SkillTree />
+        </Route>
+        <Route exact={true} path="/">
+          <Homepage />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 

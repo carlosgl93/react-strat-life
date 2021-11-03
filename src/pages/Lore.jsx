@@ -3,9 +3,7 @@ import Container from "react-bootstrap/Container";
 
 const Lore = () => {
   return (
-    <Container className="text-center">
-      <hr />
-
+    <Container className="text-center mt-3">
       <h2 className="text-center">Life Lore</h2>
       <p>
         This section tries to explain the hidden secrets to a meaningful life.

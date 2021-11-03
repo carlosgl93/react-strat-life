@@ -8,6 +8,7 @@ import CreateQuestCard from "../components/ui/CreateQuestCard";
 const Quests = () => {
   const [fetching, setFetching] = useState(true);
   const [loadedQuests, setLoadedQuests] = useState([]);
+  const [newQuest, setNewQuest] = useState(false);
 
   const history = useHistory();
 
@@ -17,7 +18,17 @@ const Quests = () => {
         return response.json();
       })
       .then((data) => {
-        setLoadedQuests(data);
+        const quests = [];
+        // for loop to iterate through the quests returned from the data object
+        // key is the id of each quest
+        for (const key in data) {
+          const quest = {
+            id: key,
+            ...data[key],
+          };
+          quests.push(quest);
+        }
+        setLoadedQuests(quests);
         setFetching(false);
         console.log(loadedQuests);
       });
@@ -35,12 +46,13 @@ const Quests = () => {
     }).then(() => {
       history.replace("/quests");
     });
+    setNewQuest(true);
   };
 
   useEffect(() => {
     setFetching(true);
     fetchAllUserQuests();
-  }, []);
+  }, [newQuest]);
 
   if (fetching === true) {
     return (
