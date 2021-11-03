@@ -7,15 +7,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FirebaseAppProvider } from "reactfire";
 import firebaseConfig from "./firebase_config";
 import { AuthContextProvider } from "./store/auth_context";
-import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-    <Suspense fallback={"Loading"}>
+    <Suspense>
       <AuthContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </AuthContextProvider>
     </Suspense>
   </FirebaseAppProvider>,

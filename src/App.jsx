@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import Homepage from "./pages/homepage/Homepage";
@@ -14,34 +14,36 @@ function App() {
   const firebase = useFirebaseApp();
 
   return (
-    <Layout>
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/sign-up">
-          <SignUp firebaseApp={firebase} />
-        </Route>
-        <Route path="/quests">
-          <Quests />
-        </Route>
-        <Route path="/attributes">
-          <Attributes />
-        </Route>
-        <Route path="/skill-tree">
-          <SkillTree />
-        </Route>
-        <Route path="/life-lore">
-          <Lore />
-        </Route>
-        <Route path="/skills">
-          <SkillTree />
-        </Route>
-        <Route exact={true} path="/">
-          <Homepage />
-        </Route>
-      </Switch>
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/sign-up">
+            <SignUp firebaseApp={firebase} />
+          </Route>
+          <Route path="/quests">
+            <Quests />
+          </Route>
+          <Route path="/attributes">
+            <Attributes />
+          </Route>
+          <Route path="/skill-tree">
+            <SkillTree />
+          </Route>
+          <Route path="/life-lore">
+            <Lore />
+          </Route>
+          <Route path="/skills">
+            <SkillTree />
+          </Route>
+          <Route exact={true} path="/">
+            <Homepage />
+          </Route>
+        </Switch>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
